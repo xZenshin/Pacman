@@ -100,3 +100,12 @@ class Entity(object):
                 distances.append(vec.magnitudeSquared())
             index = distances.index(min(distances))
             return directions[index]
+    
+    def fleeingDirection(self, directions):
+        distances = []
+        for direction in directions:
+            vec  = self.node.position + self.direction[direction]*TILEWIDTH - self.goal
+            distances.append(vec.magnitudeSquared())
+        index = distances.index(min(distances))
+        return directions[index]
+        
