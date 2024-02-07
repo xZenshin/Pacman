@@ -93,10 +93,10 @@ class Entity(object):
     def randomDirection(self, directions):
         return directions[randint(0, len(directions)-1)]
 
-    def goalDirection(self, directions):
+    def seekDirection(self, directions):
             distances = []
             for direction in directions:
-                vec = self.node.position  + self.directions[direction]*TILEWIDTH - self.goal
+                vec = self.node.position + self.directions[direction]*TILEWIDTH - self.goal
                 distances.append(vec.magnitudeSquared())
             index = distances.index(min(distances))
             return directions[index]
@@ -104,8 +104,8 @@ class Entity(object):
     def fleeingDirection(self, directions):
         distances = []
         for direction in directions:
-            vec  = self.node.position + self.direction[direction]*TILEWIDTH - self.goal
+            vec = self.node.position + self.directions[direction]*TILEWIDTH - self.goal
             distances.append(vec.magnitudeSquared())
-        index = distances.index(min(distances))
+        index = distances.index(max(distances))
         return directions[index]
         
